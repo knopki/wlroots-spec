@@ -3,23 +3,21 @@
 %global project         swaywm
 %global repo            wlroots
 %global provider_prefix %{provider}.%{provider_tld}/%{project}/%{repo}
-%global commit          9383e1f76cdd9139c41304d9adefe3ab023077a3
-%global shortcommit     %(c=%{commit}; echo ${c:0:7})
 
 Name:           wlroots
-Version:        0.0.1
-Release:        6.git%{shortcommit}%{?dist}
+Version:        0.1
+Release:        1%{?dist}
 Summary:        Pluggable, composable, unopinionated modules for building a Wayland compositor
 License:        MIT
 URL:            https://%{provider_prefix}
-# https://github.com/swaywm/wlroots/archive/9383e1f76cdd9139c41304d9adefe3ab023077a3/wlroots-9383e1f.tar.gz
-Source:         https://%{provider_prefix}/archive/%{commit}/%{repo}-%{shortcommit}.tar.gz
+
+Source:         https://%{provider_prefix}/archive/%{version}.tar.gz
 Requires:       libcap
 Requires:       libdrm
 Requires:       libinput
 Requires:       libwayland-cursor
 Requires:       libwayland-egl
-Requires:       libwayland-server
+Requires:       libwayland-server >= 1.16
 Requires:       libxkbcommon
 Requires:       mesa-libEGL
 Requires:       mesa-libgbm
@@ -38,10 +36,10 @@ BuildRequires:  libxkbcommon-devel
 BuildRequires:  mesa-libEGL-devel
 BuildRequires:  mesa-libgbm-devel
 BuildRequires:  mesa-libGLES-devel
-BuildRequires:  meson
+BuildRequires:  meson >= 0.48
 BuildRequires:  pixman-devel
 BuildRequires:  systemd-devel
-BuildRequires:  wayland-devel
+BuildRequires:  wayland-devel >= 1.16
 BuildRequires:  wayland-protocols-devel
 BuildRequires:  xcb-util-errors-devel
 BuildRequires:  xcb-util-image-devel
@@ -51,7 +49,7 @@ BuildRequires:  xcb-util-wm-devel
 %{summary}.
 
 %prep
-%setup -q -n %{repo}-%{commit}
+%setup -q
 
 %build
 %meson
@@ -84,6 +82,9 @@ Requires:       wlroots
 %{_includedir}/wlr/*
 
 %changelog
+* Sun Oct 21 2018 Sergey Korolev <korolev.srg@gmail.com> - 0.1-1
+- Update to version 0.1
+
 * Sun Oct 14 2018 Sergey Korolev <korolev.srg@gmail.com> - 0.0.1-6.git9383e1f
 - Code update for sway 1.0-alpha.6 release
 
