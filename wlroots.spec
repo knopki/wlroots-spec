@@ -5,7 +5,7 @@
 %global provider_prefix %{provider}.%{provider_tld}/%{project}/%{repo}
 
 Name:           wlroots
-Version:        0.1
+Version:        0.2
 Release:        1%{?dist}
 Summary:        Pluggable, composable, unopinionated modules for building a Wayland compositor
 License:        MIT
@@ -82,6 +82,9 @@ Requires:       wlroots
 %{_includedir}/wlr/*
 
 %changelog
+* Sun Dec 2 2018 Sergey Korolev <korolev.srg@gmail.com> - 0.2-1
+- Update to version 0.2
+
 * Sun Oct 21 2018 Sergey Korolev <korolev.srg@gmail.com> - 0.1-1
 - Update to version 0.1
 
